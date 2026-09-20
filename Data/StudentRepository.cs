@@ -75,13 +75,14 @@ namespace Asal.StudentManagementSystem.Data
             return students;
         }
 
-        public bool UpdateStudentInformation(Student student,string NewName,int NewAge, double NewGrade)
+        public bool UpdateStudentInformation(Guid StudentId,string NewName,int NewAge, double NewGrade)
         {
-            if (student is null || string.IsNullOrWhiteSpace(NewName)
+            if (string.IsNullOrWhiteSpace(NewName)
                 || !NewAge.IsBetween(MinAge, MaxAge)
                 || !NewGrade.IsBetween(MinGrade, MaxGrade)
-                || !StudentExists(student.Id))
+                || !StudentExists(StudentId))
                 return false;
+            var student = GetStudentById(StudentId);
             student.Name = NewName;
             student.Age= NewAge;
             student.Grade= NewGrade;

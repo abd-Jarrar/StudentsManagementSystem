@@ -16,11 +16,14 @@ namespace Asal.StudentManagementSystem.Interfaces
 
         List<Student> FilterStudents(Predicate<Student> predicate);
 
-        bool UpdateStudentInformation(Student student, string NewName, int NewAge, double NewGrade);
+        bool UpdateStudentInformation(Guid StudentId, string NewName, int NewAge, double NewGrade);
 
         bool DeleteStudent(Guid StudentId);
 
         List<Student> SortStudentsByAgeDesc();
-        
+
+        bool StudentExists(Guid StudentId);
+
+
     }
 }
