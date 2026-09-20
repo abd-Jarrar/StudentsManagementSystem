@@ -1,4 +1,5 @@
-﻿using Asal.StudentManagementSystem.Models;
+﻿using Asal.StudentManagementSystem.Interfaces;
+using Asal.StudentManagementSystem.Models;
 using Asal.StudentManagementSystem.Utilities;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,8 @@ using System.Text;
 
 namespace Asal.StudentManagementSystem.Data
 {
-    public class StudentsDatabase
+    public class StudentRepository :IStudentRepository
+
     {
         const int MaxGrade = 100;
         const int MinGrade = 0;
@@ -94,6 +96,21 @@ namespace Asal.StudentManagementSystem.Data
                     return true;
             }
             return false;
+        }
+
+        public bool DeleteStudent(Guid StudentId)
+        {
+            var student = GetStudentById(StudentId);
+            if (student is null)
+                return false;
+            _students.Remove(student);
+            return true;
+        }
+
+        public List<Student> SortStudentsByAgeDesc()
+        {
+            List<Student> students = _students.OrderByDescending(st => st.Age).ToList();
+            return students;
         }
     }
 }
