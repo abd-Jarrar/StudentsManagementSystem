@@ -57,11 +57,11 @@ namespace Asal.StudentManagementSystem.Utilities
         public static double AskForGrade()
         {
             double grade;
-
+            
             do
             {
                 Console.Write("Enter your grade (0-100): ");
-            } while (!double.TryParse(Console.ReadLine(), out grade) || !grade.IsBetween(MinAge, MaxAge));
+            } while (!double.TryParse(Console.ReadLine(), out grade) || !grade.IsBetween(MinGrade, MaxGrade));
 
             return grade;
         }
