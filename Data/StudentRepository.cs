@@ -16,14 +16,14 @@ namespace Asal.StudentManagementSystem.Data
         const int MinAge = 3;
         private readonly List<Student> _students = new List<Student>() {
 
-        new Student{Id=Guid.NewGuid(),Name="abd jarrar",Age=7,Grade=2},
-        new Student{Id=Guid.NewGuid(),Name="rami hijjawi",Age=8,Grade=3},
-        new Student{Id=Guid.NewGuid(),Name="samer ahmad",Age=9,Grade=4},
-        new Student{Id=Guid.NewGuid(),Name="kareem salem",Age=10,Grade=5},
-        new Student{Id=Guid.NewGuid(),Name="ruba salem",Age=11,Grade=6},
-        new Student{Id=Guid.NewGuid(),Name="emad nabulsi",Age=12,Grade=7},
-        new Student{Id=Guid.NewGuid(),Name="rania titi",Age=13,Grade=8},
-        new Student{Id=Guid.NewGuid(),Name="sami jarrar",Age=14,Grade=9},
+        new Student{Id=Guid.NewGuid(),Name="abd jarrar",Age=7,Grade=100},
+        new Student{Id=Guid.NewGuid(),Name="rami hijjawi",Age=8,Grade=92.4},
+        new Student{Id=Guid.NewGuid(),Name="samer ahmad",Age=9,Grade=50.2},
+        new Student{Id=Guid.NewGuid(),Name="kareem salem",Age=10,Grade=91.7},
+        new Student{Id=Guid.NewGuid(),Name="ruba salem",Age=11,Grade=67.4},
+        new Student{Id=Guid.NewGuid(),Name="emad nabulsi",Age=12,Grade=80.3},
+        new Student{Id=Guid.NewGuid(),Name="rania titi",Age=13,Grade=88},
+        new Student{Id=Guid.NewGuid(),Name="sami jarrar",Age=14,Grade=90},
 
         };
 
@@ -43,7 +43,7 @@ namespace Asal.StudentManagementSystem.Data
 
         public int GetStudentCount() => _students.Count();
 
-        public bool AddNewStudent(string StudentName,int StudentAge,int StudentGrade)
+        public bool AddNewStudent(string StudentName,int StudentAge,double StudentGrade)
         {
             if (string.IsNullOrWhiteSpace(StudentName) ||!StudentAge.IsBetween(MinAge,MaxAge)||!StudentGrade.IsBetween(MinGrade, MaxGrade))
             {
@@ -75,7 +75,7 @@ namespace Asal.StudentManagementSystem.Data
             return students;
         }
 
-        public bool UpdateStudentInformation(Student student,string NewName,int NewAge,int NewGrade)
+        public bool UpdateStudentInformation(Student student,string NewName,int NewAge, double NewGrade)
         {
             if (student is null || string.IsNullOrWhiteSpace(NewName)
                 || !NewAge.IsBetween(MinAge, MaxAge)

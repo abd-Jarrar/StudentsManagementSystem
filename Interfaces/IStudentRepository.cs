@@ -10,13 +10,13 @@ namespace Asal.StudentManagementSystem.Interfaces
         Student? GetStudentById(Guid StudentId);
         List<Student> GetAllStudents();
 
-        bool AddNewStudent(string StudentName, int StudentAge, int StudentGrade);
+        bool AddNewStudent(string StudentName, int StudentAge, double StudentGrade);
 
         double GetAverageGrade();
 
         List<Student> FilterStudents(Predicate<Student> predicate);
 
-        bool UpdateStudentInformation(Student student, string NewName, int NewAge, int NewGrade);
+        bool UpdateStudentInformation(Student student, string NewName, int NewAge, double NewGrade);
 
         bool DeleteStudent(Guid StudentId);
 
