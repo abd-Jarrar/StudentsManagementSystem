@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Asal.StudentManagementSystem
+namespace Asal.StudentManagementSystem.Models
 {
     public  class Student
     {
