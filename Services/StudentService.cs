@@ -9,10 +9,12 @@ namespace Asal.StudentManagementSystem.Services
 {
     public class StudentService
     {
+        private readonly IExporterService<Student> _exporter;
         private readonly IStudentRepository _repository;
 
         public StudentService(IStudentRepository repository)
         {
+            
             _repository = repository;
         }
         public void AddStudent()
@@ -137,6 +139,28 @@ namespace Asal.StudentManagementSystem.Services
             }
         }
 
-        
+        public void ExportData()
+        {
+            Console.WriteLine("Choose export format:");
+            Console.WriteLine("[1] CSV");
+            Console.WriteLine("[2] JSON");
+            Console.WriteLine("[3] XML");
+
+            int choice = StudentManagementSystsemUtilities.AskForNumberBetween(1, 3);
+
+            IExporterService<Student> exporter = choice switch
+            {
+                1 => new CsvStudentExporter(),
+                2 => new JsonStudentExporter(),
+                3 => new XmlStudentExporter(),
+                _ => throw new InvalidOperationException()
+            };
+
+            string filePath = StudentManagementSystsemUtilities.ReadFilePath();
+
+            Console.WriteLine($"Exporting the data to: {filePath}");
+
+            exporter.Export(_repository.GetAllStudents(), filePath);
+        }
     }
 }

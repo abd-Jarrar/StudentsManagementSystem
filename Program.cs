@@ -1,5 +1,6 @@
 ﻿using Asal.StudentManagementSystem.Data;
 using Asal.StudentManagementSystem.Interfaces;
+using Asal.StudentManagementSystem.Models;
 using Asal.StudentManagementSystem.Services;
 using Asal.StudentManagementSystem.Utilities;
 
@@ -9,6 +10,10 @@ public class Program
     {
         IStudentRepository repository = new StudentRepository();
         StudentService service = new StudentService(repository);
+        IExporterService<Student> jsonExporter = new JsonStudentExporter();
+        IExporterService<Student> xmlExporter = new XmlStudentExporter();
+        IExporterService<Student> csvExporter = new CsvStudentExporter();
+
         bool running = true;
 
         while (running)
@@ -24,10 +29,11 @@ public class Program
             Console.WriteLine("[6] Display Average Grade");
             Console.WriteLine("[7] Sort Students By Age");
             Console.WriteLine("[8] Update Student");
+            Console.WriteLine("[9] Export to File");
             Console.WriteLine("[0] Exit");
             Console.WriteLine("=====================================");
 
-            int choice = StudentManagementSystsemUtilities.AskForNumberBetween(0, 8);
+            int choice = StudentManagementSystsemUtilities.AskForNumberBetween(0, 9);
 
             switch (choice)
             {
@@ -63,6 +69,9 @@ public class Program
                     service.UpdateStudent();
                     break;
 
+                case 9:
+                    service.ExportData();
+                    break;
                 case 0:
                     running = false;
                     Console.WriteLine("Goodbye!");

@@ -104,5 +104,11 @@ namespace Asal.StudentManagementSystem.Utilities
             Console.WriteLine(
                 $"{student.Id,-45} {student.Name,-20} {student.Age,-5} {student.Grade,-10:F2}");
         }
+
+        public static string ReadFilePath()
+        {
+            Console.Write("Enter the file path: ");
+            return Console.ReadLine() ?? string.Empty;
+        }
     }
 }
